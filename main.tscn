@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://duuyd47foltxy"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_mnkmw"]
+[ext_resource type="Script" path="res://dartboard.gd" id="2_ap82a"]
+[ext_resource type="Texture2D" uid="uid://chj6su68rktx1" path="res://board.png" id="3_qres4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xq25n"]
+radius = 145.774
+
+[node name="Main" type="Node"]
+script = ExtResource("1_mnkmw")
+
+[node name="Dartboard" type="Node2D" parent="."]
+position = Vector2(611, 326)
+script = ExtResource("2_ap82a")
+
+[node name="Board" type="Sprite2D" parent="Dartboard"]
+position = Vector2(-4, -6)
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("3_qres4")
+
+[node name="Area2D" type="Area2D" parent="Dartboard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dartboard/Area2D"]
+position = Vector2(-5, -5)
+shape = SubResource("CircleShape2D_xq25n")
+
+[connection signal="input_event" from="Dartboard/Area2D" to="." method="_on_area_2d_input_event"]
